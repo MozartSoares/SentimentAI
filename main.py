@@ -1,40 +1,33 @@
-# cleaning text steps:
-#   1) create a text file and take text from it
-#   2) Convert the letters into lowercase ('Apple' != 'apple')
-#   3) remove punctuationss like .,!? etc. ('Hi! this is Mozart Soares.')
 import string
 from collections import Counter
-from matplotlib import pyplot
+from matplotlib import pyplot as plt
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords # stop words are words that have no meaning for the sentence to be analised using NLP
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-def preprocess_text(file_name='read.txt'):
+def preprocess_text(file_name='example.txt'):
   # cleaning text
-  text = open(file_name,encoding='utf-8').read()
-  
+  try:
+    text = open(file_name,encoding='utf-8').read()
+  except FileNotFoundError:
+    print("File not found. Please check the file name and try again.")
+    exit()
+
   lower_text = text.lower()
   
   cleaned_text = lower_text.translate(str.maketrans('','',string.punctuation))
   
+  analyse_sentiment(cleaned_text)
+  
   # tokenizing text
-  tokenized_words = cleaned_text.split() 
-  
-  # stop words are words that have no meaning for the sentence to be analised using NLP
-  stop_words = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself",
-    "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself",
-    "they", "them", "their", "theirs", "themselves", "what", "which", "who", "whom", "this", "that", "these",
-    "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do",
-    "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while",
-    "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before",
-    "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again",
-    "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each",
-    "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than",
-    "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"]
-  
-  final_words = [] 
+  tokenized_words = word_tokenize(cleaned_text,"english")
+  final_words = []
+
   # removing stop words from tokenized words
   for word in tokenized_words:
-    if word not in stop_words:
+    if word not in stopwords.words('english'):
       final_words.append(word)
-  return final_words 
+  return cleaned_text,final_words 
 
 def check_emotions(words_list):
   emotions_list = []
@@ -49,20 +42,54 @@ def check_emotions(words_list):
 
     return emotions_list
 
+def analyse_sentiment(sentiment_text):
+  score = SentimentIntensityAnalyzer().polarity_scores(sentiment_text)
+  negative = score['neg']
+  positive = score['pos']
+  if (negative > positive):
+    sentiment = 'Negative Sentiment'
+  elif (positive > negative):
+    sentiment = 'Positive Sentiment'
+  else: 
+    sentiment = 'Neutral Sentiment'
+    
+  return sentiment
+
+def visualize_emotions(sentiment,emotions_list):
+    emotions_count = Counter(emotions_list)
+    
+    fig, ax1 = plt.subplots()
+    ax1.bar(emotions_count.keys(), emotions_count.values())
+    ax1.set_xlabel('Emotions')
+    ax1.set_ylabel('Frequency')
+    plt.title('Frequency of Emotions')
+    
+    facecolor = 'green' if sentiment == 'Positive Sentiment' else 'red' if sentiment == 'Negative Sentiment' else 'yellow'
+    ax1.text(0.5, max(emotions_count.values()) * 0.9, f'Main sentiment: {sentiment}',horizontalalignment='center', fontsize=12, color='black', bbox=dict(facecolor=facecolor, alpha=0.5))
+    
+    plt.xticks(rotation=45)
+    plt.tight_layout()  
+    plt.savefig('emotions_graph.png')
+    plt.show()
 
 def main():
-  processed_words = preprocess_text()
-  emotions_list = check_emotions(processed_words)
-  # print(processed_words)
-  print(emotions_list)
-  emotions_count = Counter(emotions_list)
-  
-  # creating graph
-  fig, ax1 = pyplot.subplots()
-  ax1.bar(emotions_count.keys(), emotions_count.values())
-  fig.autofmt_xdate()
-  
-  pyplot.savefig('emotions_graph.png')
-  pyplot.show()
+    # ask user for the filepath 
+    print("Welcome to the Sentiment Analysis Tool!")
+    print('If you just want to test it out with a sample text file, please use "example.txt", it contains a speech Steve Jobs gave at Stanford University.')
+    filepath = input("Please insert the name for your text file (e.g. example.txt): ")
+
+    # gets text from the file that the user chose
+    cleaned_text, processed_words = preprocess_text(filepath)
+    
+    # gets overall sentiment of the text
+    sentiment = analyse_sentiment(cleaned_text)
+    
+    # get emotions and compares it with the sample data 'emotions.txt', it gets emotions count and frequency for the graphs
+    emotions_list = check_emotions(processed_words)
+    
+    # make chart to visualize the result
+    visualize_emotions(sentiment,emotions_list)
+
+
 if __name__ == '__main__':
   main()  

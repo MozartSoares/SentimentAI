@@ -1,0 +1,50 @@
+Second Report for a Student Chosen Project
+
+Do the following:
+
+1. In the table below, list the dates, amount of time spent, and
+description of the work that you did on your project. Follow the example
+that is in the first row of the table below. Include the time you spent
+doing any of the following:
+    a. discussing your project with your teacher, tutor, or fellow students
+    b. researching by reading articles and watching applicable videos
+    c. designing your project by drawing diagrams and other applicable documents
+    d. writing experimental code
+    d. writing code for your project
+    e. writing test functions
+    f. debugging your code
+    g. any other activity that helped you complete your project
+
+=============Example====================
+            Time Spent
+   Date       (hours)   Description of Work
+----------  ----------  -------------------------
+2021-12-03      2.5     Wrote two program functions and two test functions
+2021-12-03      .5      Watched video on 
+=============Example====================
+
+
+            Time Spent
+   Date       (hours)   Description of Work
+----------  ----------  -------------------------
+2024-10-24      1.0     Researched project ideas and the best way to implement sentiment analysis
+2024-10-24      1.5     Researched sentiment analysis techniques and reviewed relevant articles on NLP
+2024-10-24      1.5     Drafted a project outline and noted down some things to consider for the project design
+----------  ----------  -------------------------
+2024-10-25      1.5     Reviewed Python libraries for NLP, focusing on NLTK and its implementations with VADER
+2024-10-25      1.5     Watched tutorial videos on sentiment analysis implementation and NLP processing
+2024-10-25      2 .0   Created the schema and basic functions in my program and structured it for further development
+----------  ----------  -------------------------
+2024-10-26      4.0     Wrote the initial version of the program but not using NLTK and doing some steps manually to understand how everything works 'under the hood'.
+----------  ----------  -------------------------
+2024-10-27      2.0     Integrated NLTK and VADER to the program 
+2024-10-27      2.0     Created all test functions 
+2024-10-27      1.0     Debugged the program and tested it manually and updated the proposal.txt file to be my program's documentation.
+2024-10-27      0.5     Parsed the code removing comments and making adjustements to make it more readable.
+
+
+
+
+2. In Canvas, submit this completed text file, your Python program, your
+Python test file, and any project data files such as .txt and .csv files and
+link to video walkthrough if needed.

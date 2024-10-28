@@ -1,0 +1,23 @@
+Instructions to Run the Sentiment Analysis Program
+Overview
+This program analyzes the sentiment of a given text using Natural Language Processing (NLP) techniques. You can use the provided example file or add your own text file.
+
+Requirements
+Before running the program, ensure you have the following libraries installed:
+
+pip install nltk matplotlib
+
+Additionally, download the necessary NLTK resources by running:
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('vader_lexicon')
+run the settings.py file to download the necessary resources from nltk.
+
+Using:
+Example Text File: There is an existing file called example.txt, which contains a speech by Steve Jobs at Stanford University. You can use this file to test the program or provide your own.
+
+When prompted, enter the name of the text file you want to analyze:
+When prompted, you can enter example.txt to analyze the Steve Jobs speech, or enter the name of any text file you want to analyze, but you must include it in the program folder.
+
+It was a great experience creating this program! I hope you find it useful and informative. I look forward to your feedback!

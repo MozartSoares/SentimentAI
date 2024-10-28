@@ -1,5 +1,0 @@
-Hello, world!
-This is a test... with multiple punctuations!!!
-Can you clean this text? @#%&*()
-Numbers 1234567890 and symbols #$%^&*()
-Mixed: text, numbers 123, and symbols #@!
