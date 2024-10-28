@@ -1,0 +1,60 @@
+1. What is the title of your program?
+SentimentAI 
+(an AI-Based Sentiment Analysis for User Comments)
+
+2. What real-world problem will your program address or help to solve?
+This program will assist in analyzing and categorizing user comments as positive, negative, or neutral based on sentiment. It aims to help organizations, websites, or individuals process large amounts of feedback and extract insights about the 
+overall sentiment of their users or any other text. This is particularly useful for businesses monitoring customer satisfaction, social media posts, or product reviews, enabling them to make informed decisions quickly.
+
+3. What will you learn from developing this program?
+From this project, I will learn:
+
+How to effectively clean and preprocess text data for sentiment analysis.
+The process of tokenizing text and removing stop words using the NLTK library.
+How to implement sentiment analysis using VADER from NLTK to classify comments.
+Techniques for detecting emotions in text based on a predefined dataset.
+How to visualize sentiment and emotion distributions using Matplotlib.
+The importance of organizing and structuring code for readability and maintainability.
+4. What Python modules will your program use?
+The program will utilize the following Python modules:
+
+string: For cleaning text and removing punctuation.
+collections: To use the Counter class for counting occurrences of emotions.
+matplotlib: For visualizing the frequency of detected emotions in bar graphs.
+nltk: For text tokenization, stopword removal, and sentiment analysis with VADER.
+
+5. List the names of functions you will need?
+Here's a breakdown of the core functions in the program:
+
+preprocess_text(file_name='read.txt'):
+
+Purpose: Cleans and prepares the text for sentiment analysis by converting it to lowercase, removing punctuation, and tokenizing.
+Input: A string (file name).
+Output: The cleaned text and a list of processed words (tokens).
+check_emotions(words_list):
+
+Purpose: Identifies and compiles emotions present in the processed words by comparing them against an emotion dataset.
+Input: A list of processed words.
+Output: A list of detected emotions.
+analyse_sentiment(sentiment_text):
+
+Purpose: Evaluates the overall sentiment of the cleaned text using VADER and categorizes it as positive, negative, or neutral.
+Input: The cleaned text.
+Output: The identified sentiment and a dictionary of sentiment scores.
+visualize_emotions(sentiment, emotions_list):
+
+Purpose: Creates a bar graph representing the frequency of different emotions found in the input and annotates it with the main sentiment.
+Input: The identified sentiment and a list of detected emotions.
+Output: A visual representation of sentiment and emotion distribution.
+6. List the names of the test functions you will write.
+test_preprocess_text():
+Purpose: Tests that the text preprocessing function correctly removes unwanted characters and stopwords.
+
+test_check_emotions():
+Purpose: Verifies that the emotion detection function correctly identifies and compiles emotions from the words list.
+
+test_analyse_sentiment():
+Purpose: Ensures that the sentiment analysis function accurately classifies sentiments based on input text.
+
+test_visualize_emotions():
+Purpose: Checks if the visualization function produces the expected bar graph with correct sentiment annotations.
